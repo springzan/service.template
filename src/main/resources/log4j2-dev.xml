@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Properties>
+        <property name="LOG_PATH">./logs</property>
+        <property name="request.log.file.name">${LOG_PATH}/request.log</property>
+        <property name="request.log.file.name.pattern">${request.log.file.name}.%d{yyyy-MM-dd}</property>
+    </Properties>
+    <Appenders>
+
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+
+        <RollingRandomAccessFile name="request.log" fileName="${request.log.file.name}"
+                                 filePattern="${request.log.file.name.pattern}">
+            <PatternLayout
+                    pattern="[%thread] %message%n">
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+        </RollingRandomAccessFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Logger name="org.eclipse.jetty.server.RequestLog" level="info" additivity="false">
+            <AppenderRef ref="request.log"/>
+        </Logger>
+        <Logger name="com.example.service" level="debug" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+        <Logger name="org.springframework" level="info" additivity="false">
+            <AppenderRef ref="Console"/>
+        </Logger>
+
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+
+</Configuration>

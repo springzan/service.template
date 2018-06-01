@@ -1,0 +1,17 @@
+app:
+  name: service-template
+
+server:
+  port: 1001
+  servlet-path: /${app.name}
+
+spring:
+  profiles:
+    active: dev
+  output:
+    ansi:
+      enabled: detect
+
+dubbo:
+  protocol:
+    port: 20000

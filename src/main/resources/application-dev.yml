@@ -1,0 +1,6 @@
+logging:
+  config: classpath:log4j2-dev.xml
+
+dubbo:
+  registry:
+    zkhosts: 120.27.192.32:2181,120.27.195.122:2181
